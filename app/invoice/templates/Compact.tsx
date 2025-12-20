@@ -12,6 +12,13 @@ export default function CompactTemplate({ invoice }: { invoice: Invoice }) {
   return (
     <div className="p-6 text-xs">
       <div className="flex justify-between mb-4">
+        {invoice.from.logo && (
+            <img
+              src={invoice.from.logo}
+              className="h-16 object-contain"
+              alt="Logo"
+            />
+          )}
         <strong>INVOICE</strong>
         <span>{invoice.invoiceNo}</span>
       </div>

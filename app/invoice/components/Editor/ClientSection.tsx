@@ -1,49 +1,59 @@
 "use client";
 
 import { useInvoiceStore } from "../../store/useInvoiceStore";
+import FloatingInput from "../ui/FloatingInput";
 
 export default function ClientSection() {
   const { invoice, update } = useInvoiceStore();
 
   return (
-    <section className="bg-white rounded-xl p-4 shadow-sm">
-      <h3 className="font-semibold mb-3">Bill To</h3>
+    <section className="rounded-xl border border-gray-800 bg-gray-900 p-5 shadow-sm">
+      
+      {/* Header */}
+      <div className="mb-6">
+        <h3 className="text-sm font-semibold text-gray-100">
+          Bill To
+        </h3>
+        <p className="text-xs text-gray-500">
+          Client information
+        </p>
+      </div>
 
-      <input
-        className="input"
-        placeholder="Client Name"
-        value={invoice.to.name}
-        onChange={(e) =>
-          update({ to: { ...invoice.to, name: e.target.value } })
-        }
-      />
-
-      <input
-        className="input"
-        placeholder="Client Address"
-        value={invoice.to.address}
-        onChange={(e) =>
-          update({ to: { ...invoice.to, address: e.target.value } })
-        }
-      />
-
-      <div className="grid grid-cols-2 gap-2">
-        <input
-          className="input"
-          placeholder="City"
-          value={invoice.to.city}
+      {/* Form */}
+      <div className="space-y-4">
+        <FloatingInput
+          label="Client Name"
+          value={invoice.to.name}
           onChange={(e) =>
-            update({ to: { ...invoice.to, city: e.target.value } })
+            update({ to: { ...invoice.to, name: e.target.value } })
           }
         />
-        <input
-          className="input"
-          placeholder="Country"
-          value={invoice.to.country}
+
+        <FloatingInput
+          label="Client Address"
+          value={invoice.to.address}
           onChange={(e) =>
-            update({ to: { ...invoice.to, country: e.target.value } })
+            update({ to: { ...invoice.to, address: e.target.value } })
           }
         />
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <FloatingInput
+            label="City"
+            value={invoice.to.city}
+            onChange={(e) =>
+              update({ to: { ...invoice.to, city: e.target.value } })
+            }
+          />
+
+          <FloatingInput
+            label="Country"
+            value={invoice.to.country}
+            onChange={(e) =>
+              update({ to: { ...invoice.to, country: e.target.value } })
+            }
+          />
+        </div>
       </div>
     </section>
   );

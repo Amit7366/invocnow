@@ -10,96 +10,149 @@ export default function ClassicTemplate({ invoice }: { invoice: Invoice }) {
   );
 
   return (
-    <div className="p-10 text-sm" style={{ color: invoice.color }}>
+    <div className="bg-white p-12 text-sm text-gray-800">
+      
       {/* HEADER */}
-      <header className="flex justify-between mb-10">
-        <div>
-          <h1 className="text-3xl font-light">INVOICE</h1>
-          <p className="text-gray-500">{invoice.invoiceNo}</p>
+      <header className="mb-12 flex items-start justify-between">
+        <div className="flex items-center gap-5">
+          {invoice.from.logo && (
+            <img
+              src={invoice.from.logo}
+              className="h-14 w-14 object-contain"
+              alt="Logo"
+            />
+          )}
+
+          <div>
+            <h1
+              className="text-3xl font-light tracking-wide"
+              style={{ color: invoice.color }}
+            >
+              INVOICE
+            </h1>
+            <p className="mt-1 text-xs text-gray-500">
+              Invoice #{invoice.invoiceNo}
+            </p>
+          </div>
         </div>
-        <div className="text-right">
-          <p>Issue Date: {invoice.issueDate}</p>
-          <p>Due Date: {invoice.dueDate}</p>
+
+        <div className="text-right text-xs text-gray-600">
+          <p>
+            <span className="font-medium text-gray-500">Issue Date:</span>{" "}
+            {invoice.issueDate}
+          </p>
+
+          {invoice.dueDate && (
+            <p className="mt-1">
+              <span className="font-medium text-gray-500">Due Date:</span>{" "}
+              {invoice.dueDate}
+            </p>
+          )}
         </div>
       </header>
 
-      {/* PARTIES */}
-      <div className="grid grid-cols-2 gap-10 mb-10">
+      {/* FROM / TO */}
+      <section className="mb-12 grid grid-cols-2 gap-16">
         <div>
-          <h4 className="font-semibold mb-1">From</h4>
-          <p>{invoice.from.name}</p>
-          <p>{invoice.from.address}</p>
-          <p>
+          <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+            From
+          </h4>
+          <p className="font-medium">{invoice.from.name}</p>
+          <p className="text-gray-600">{invoice.from.address}</p>
+          <p className="text-gray-600">
             {invoice.from.city}, {invoice.from.country}
           </p>
         </div>
 
         <div>
-          <h4 className="font-semibold mb-1">Bill To</h4>
-          <p>{invoice.to.name}</p>
-          <p>{invoice.to.address}</p>
-          <p>
+          <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+            Bill To
+          </h4>
+          <p className="font-medium">{invoice.to.name}</p>
+          <p className="text-gray-600">{invoice.to.address}</p>
+          <p className="text-gray-600">
             {invoice.to.city}, {invoice.to.country}
           </p>
         </div>
-      </div>
+      </section>
 
-      {/* ITEMS */}
-      <table className="w-full mb-8 border-t">
-        <thead>
-          <tr className="text-left border-b">
-            <th className="py-2">Item</th>
-            <th>Qty</th>
-            <th>Rate</th>
-            <th className="text-right">Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          {invoice.items.map((item) => (
-            <tr key={item.id} className="border-b">
-              <td className="py-2">{item.name}</td>
-              <td>{item.qty}</td>
-              <td>{invoice.currency} {item.rate.toFixed(2)}</td>
-              <td className="text-right">
-                {(item.qty * item.rate).toFixed(2)}
-              </td>
+      {/* ITEMS TABLE */}
+      <section className="mb-10">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-gray-200 text-xs uppercase tracking-wide text-gray-500">
+              <th className="py-3 text-left font-medium">Description</th>
+              <th className="py-3 text-right font-medium">Qty</th>
+              <th className="py-3 text-right font-medium">Rate</th>
+              <th className="py-3 text-right font-medium">Amount</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {invoice.items.map((item) => (
+              <tr key={item.id} className="border-b border-gray-100">
+                <td className="py-3">{item.name}</td>
+                <td className="py-3 text-right">{item.qty}</td>
+                <td className="py-3 text-right">
+                  {invoice.currency} {item.rate.toFixed(2)}
+                </td>
+                <td className="py-3 text-right font-medium">
+                  {invoice.currency} {(item.qty * item.rate).toFixed(2)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
 
       {/* TOTALS */}
-      <div className="flex justify-end">
-        <div className="w-64 space-y-2">
-          <div className="flex justify-between">
+      <section className="flex justify-end">
+        <div className="w-72 space-y-2 text-sm">
+          <div className="flex justify-between text-gray-600">
             <span>Subtotal</span>
-            <span>{invoice.currency} {subTotal.toFixed(2)}</span>
+            <span>
+              {invoice.currency} {subTotal.toFixed(2)}
+            </span>
           </div>
-          <div className="flex justify-between">
+
+          <div className="flex justify-between text-gray-600">
             <span>Tax ({invoice.tax}%)</span>
-            <span>{taxAmount.toFixed(2)}</span>
+            <span>
+              {invoice.currency} {taxAmount.toFixed(2)}
+            </span>
           </div>
-          <div className="flex justify-between font-semibold text-lg border-t pt-2">
+
+          {(invoice.discount > 0 || invoice.shipping > 0) && (
+            <div className="border-t border-gray-200 pt-2" />
+          )}
+
+          <div className="flex justify-between border-t border-gray-300 pt-3 text-lg font-semibold">
             <span>Total</span>
-            <span>{invoice.currency} {total.toFixed(2)}</span>
+            <span style={{ color: invoice.color }}>
+              {invoice.currency} {total.toFixed(2)}
+            </span>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* NOTES */}
       {invoice.notes && (
-        <div className="mt-10">
-          <h4 className="font-semibold">Notes</h4>
-          <p>{invoice.notes}</p>
-        </div>
+        <section className="mt-12">
+          <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+            Notes
+          </h4>
+          <p className="text-sm text-gray-700">{invoice.notes}</p>
+        </section>
       )}
 
       {/* TERMS */}
       {invoice.terms && (
-        <div className="mt-6 text-xs text-gray-600">
-          <h4 className="font-semibold">Terms</h4>
+        <section className="mt-8 text-xs text-gray-500">
+          <h4 className="mb-1 font-semibold uppercase tracking-wide">
+            Terms & Conditions
+          </h4>
           <p>{invoice.terms}</p>
-        </div>
+        </section>
       )}
     </div>
   );

@@ -1,49 +1,64 @@
 "use client";
 
 import { useInvoiceStore } from "../../store/useInvoiceStore";
+import LogoUploader from "./LogoUploader";
+import FloatingInput from "../ui/FloatingInput";
 
 export default function CompanySection() {
   const { invoice, update } = useInvoiceStore();
 
   return (
-    <section className="bg-white rounded-xl p-4 shadow-sm">
-      <h3 className="font-semibold mb-3">From</h3>
+    <section className="rounded-xl border border-gray-800 bg-gray-900 p-5 shadow-sm">
+      
+      {/* Header */}
+      <div className="mb-6 flex items-center justify-between">
+        <div>
+          <h3 className="text-sm font-semibold text-gray-100">
+            From
+          </h3>
+          <p className="text-xs text-gray-500">
+            Company details
+          </p>
+        </div>
 
-      <input
-        className="input"
-        placeholder="Your Company Name"
-        value={invoice.from.name}
-        onChange={(e) =>
-          update({ from: { ...invoice.from, name: e.target.value } })
-        }
-      />
+        <LogoUploader />
+      </div>
 
-      <input
-        className="input"
-        placeholder="Address"
-        value={invoice.from.address}
-        onChange={(e) =>
-          update({ from: { ...invoice.from, address: e.target.value } })
-        }
-      />
-
-      <div className="grid grid-cols-2 gap-2">
-        <input
-          className="input"
-          placeholder="City"
-          value={invoice.from.city}
+      {/* Form */}
+      <div className="space-y-4">
+        <FloatingInput
+          label="Company Name"
+          value={invoice.from.name}
           onChange={(e) =>
-            update({ from: { ...invoice.from, city: e.target.value } })
+            update({ from: { ...invoice.from, name: e.target.value } })
           }
         />
-        <input
-          className="input"
-          placeholder="Country"
-          value={invoice.from.country}
+
+        <FloatingInput
+          label="Address"
+          value={invoice.from.address}
           onChange={(e) =>
-            update({ from: { ...invoice.from, country: e.target.value } })
+            update({ from: { ...invoice.from, address: e.target.value } })
           }
         />
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <FloatingInput
+            label="City"
+            value={invoice.from.city}
+            onChange={(e) =>
+              update({ from: { ...invoice.from, city: e.target.value } })
+            }
+          />
+
+          <FloatingInput
+            label="Country"
+            value={invoice.from.country}
+            onChange={(e) =>
+              update({ from: { ...invoice.from, country: e.target.value } })
+            }
+          />
+        </div>
       </div>
     </section>
   );

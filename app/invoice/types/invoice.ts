@@ -11,6 +11,7 @@ export interface Party {
   address: string;
   city: string;
   country: string;
+  logo?: string; // base64 or URL
 }
 
 export interface Invoice {
@@ -28,4 +29,5 @@ export interface Invoice {
   currency: string;
   theme: "classic" | "modern" | "compact";
   color: string;
+  
 }

@@ -13,6 +13,13 @@ export default function ModernTemplate({ invoice }: { invoice: Invoice }) {
     <div className="p-12 text-sm">
       {/* HEADER */}
       <header className="flex justify-between items-center mb-12">
+        {invoice.from.logo && (
+            <img
+              src={invoice.from.logo}
+              className="h-16 object-contain"
+              alt="Logo"
+            />
+          )}
         <h1
           className="text-4xl font-bold"
           style={{ color: invoice.color }}
