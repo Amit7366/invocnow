@@ -18,6 +18,8 @@ export const useInvoiceStore = create<{
     shipping: 0,
     notes: "",
     terms: "",
+    taxType: "percentage", // ✅ NEW
+     paidAmount: 0, // ✅ NEW
     currency: "USD",
     theme: "classic",
     color: "#2563eb",

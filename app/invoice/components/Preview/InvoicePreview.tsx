@@ -6,12 +6,17 @@ import ClassicTemplate from "../../templates/Classic";
 import ModernTemplate from "../../templates/Modern";
 import CompactTemplate from "../../templates/Compact";
 import PreviewToolbar from "./PreviewToolbar";
-
+import StripeTemplate from "../../templates/StripeTemplate";
+import ZohoTemplate from "../../templates/ZohoTemplate";
+import FreshBooksTemplate from "../../templates/FreshBooksTemplate";
 
 const templates = {
   classic: ClassicTemplate,
   modern: ModernTemplate,
   compact: CompactTemplate,
+  stripe: StripeTemplate,
+  zoho: ZohoTemplate,
+  freshbook: FreshBooksTemplate,
 };
 
 export default function InvoicePreview() {
@@ -21,12 +26,12 @@ export default function InvoicePreview() {
   const printRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="bg-gray-100 p-6 overflow-auto">
+    <div className="bg-gray-100 p-6">
       <PreviewToolbar printRef={printRef} />
 
       <div
         ref={printRef}
-        className="mx-auto max-w-[850px] bg-white shadow-lg"
+        className="print-area mx-auto max-w-[850px] bg-white shadow-lg"
       >
         <Template invoice={invoice} />
       </div>

@@ -1,17 +1,23 @@
 import { Invoice } from "../types/invoice";
 import { calculateTotals } from "../utils/calculateTotals";
+import { motion } from "framer-motion";
+
 
 export default function ClassicTemplate({ invoice }: { invoice: Invoice }) {
-  const { subTotal, taxAmount, total } = calculateTotals(
+  const { subTotal, taxAmount, total, due, status } = calculateTotals(
     invoice.items,
     invoice.tax,
+    invoice.taxType,
     invoice.discount,
-    invoice.shipping
+    invoice.shipping,
+    invoice.paidAmount
   );
+
+  const paymentStatus =
+    due === 0 ? "PAID" : invoice.paidAmount > 0 ? "PARTIALLY PAID" : "DUE";
 
   return (
     <div className="bg-white p-12 text-sm text-gray-800">
-      
       {/* HEADER */}
       <header className="mb-12 flex items-start justify-between">
         <div className="flex items-center gap-5">
@@ -50,6 +56,20 @@ export default function ClassicTemplate({ invoice }: { invoice: Invoice }) {
           )}
         </div>
       </header>
+      <div className="flex justify-end mb-4">
+        <span
+          className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold
+      ${
+        paymentStatus === "PAID"
+          ? "bg-green-100 text-green-700"
+          : paymentStatus === "PARTIALLY PAID"
+          ? "bg-yellow-100 text-yellow-700"
+          : "bg-red-100 text-red-700"
+      }`}
+        >
+          {paymentStatus}
+        </span>
+      </div>
 
       {/* FROM / TO */}
       <section className="mb-12 grid grid-cols-2 gap-16">
@@ -107,30 +127,76 @@ export default function ClassicTemplate({ invoice }: { invoice: Invoice }) {
 
       {/* TOTALS */}
       <section className="flex justify-end">
-        <div className="w-72 space-y-2 text-sm">
-          <div className="flex justify-between text-gray-600">
-            <span>Subtotal</span>
-            <span>
-              {invoice.currency} {subTotal.toFixed(2)}
-            </span>
-          </div>
+        <div className="flex justify-end mt-8">
+          <div className="w-72 space-y-2 text-sm">
+            <div className="flex justify-between">
+              <span>Subtotal</span>
+              <span>
+                {invoice.currency} {subTotal.toFixed(2)}
+              </span>
+            </div>
 
-          <div className="flex justify-between text-gray-600">
-            <span>Tax ({invoice.tax}%)</span>
-            <span>
-              {invoice.currency} {taxAmount.toFixed(2)}
-            </span>
-          </div>
+            {taxAmount > 0 && (
+              <div className="flex justify-between">
+                <span>
+                  Tax {invoice.taxType === "percentage" && `(${invoice.tax}%)`}
+                </span>
+                <span>
+                  {invoice.currency} {taxAmount.toFixed(2)}
+                </span>
+              </div>
+            )}
 
-          {(invoice.discount > 0 || invoice.shipping > 0) && (
-            <div className="border-t border-gray-200 pt-2" />
-          )}
+            {invoice.shipping > 0 && (
+              <div className="flex justify-between">
+                <span>Shipping</span>
+                <span>
+                  {invoice.currency} {invoice.shipping.toFixed(2)}
+                </span>
+              </div>
+            )}
 
-          <div className="flex justify-between border-t border-gray-300 pt-3 text-lg font-semibold">
-            <span>Total</span>
-            <span style={{ color: invoice.color }}>
-              {invoice.currency} {total.toFixed(2)}
-            </span>
+            {invoice.discount > 0 && (
+              <div className="flex justify-between">
+                <span>Discount</span>
+                <span>
+                  - {invoice.currency} {invoice.discount.toFixed(2)}
+                </span>
+              </div>
+            )}
+
+            <div className="flex justify-between border-t pt-2 font-semibold">
+              <span>Total</span>
+              <span>
+                {invoice.currency} {total.toFixed(2)}
+              </span>
+            </div>
+
+            {/* ✅ Paid */}
+            {invoice.paidAmount > 0 && (
+              <div className="flex justify-between text-green-600">
+                <span>Paid</span>
+                <span>
+                  - {invoice.currency} {invoice.paidAmount.toFixed(2)}
+                </span>
+              </div>
+            )}
+
+            {/* ✅ Due */}
+
+            {due > 0 && (
+              <div className="flex justify-between border-t pt-2 text-lg font-bold text-red-600">
+                <span>Amount Due</span>
+                <motion.span
+                  key={due}
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {invoice.currency} {due.toFixed(2)}
+                </motion.span>
+              </div>
+            )}
           </div>
         </div>
       </section>

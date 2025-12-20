@@ -21,13 +21,16 @@ export interface Invoice {
   from: Party;
   to: Party;
   items: LineItem[];
+  taxType?: "percentage" | "fixed";
   tax: number;
   discount: number;
   shipping: number;
+  paidAmount: number;
+
   notes: string;
   terms: string;
   currency: string;
   theme: "classic" | "modern" | "compact";
   color: string;
-  
+
 }

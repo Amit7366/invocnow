@@ -10,7 +10,7 @@ export default function PreviewToolbar({
   printRef: React.RefObject<HTMLDivElement | null>;
 }) {
   return (
-    <div className="flex justify-between items-center mb-4">
+    <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-2">
       <TemplateSwitcher />
       <DownloadButton printRef={printRef} />
     </div>

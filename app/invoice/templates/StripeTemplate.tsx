@@ -2,7 +2,7 @@ import { Invoice } from "../types/invoice";
 import { calculateTotals } from "../utils/calculateTotals";
 import { motion } from "framer-motion";
 
-export default function ModernTemplate({ invoice }: { invoice: Invoice }) {
+export default function StripeTemplate({ invoice }: { invoice: Invoice }) {
   const { subTotal, taxAmount, total, due } = calculateTotals(
     invoice.items,
     invoice.tax,
@@ -12,58 +12,46 @@ export default function ModernTemplate({ invoice }: { invoice: Invoice }) {
     invoice.paidAmount
   );
 
-  const paymentStatus =
-    due === 0 ? "PAID" : invoice.paidAmount > 0 ? "PARTIALLY PAID" : "DUE";
+  const status =
+    due === 0 ? "Paid" : invoice.paidAmount > 0 ? "Partially paid" : "Due";
 
   return (
-    <div className="mx-auto max-w-4xl bg-white px-10 py-12 text-sm text-gray-900">
+    <div className="mx-auto max-w-4xl bg-white px-12 py-14 text-[13px] text-gray-900">
       {/* Header */}
-      <div className="flex items-start justify-between border-b pb-6">
+      <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-4xl font-light tracking-tight">Invoice</h1>
-          <p className="mt-1 text-xs text-gray-500">
-            #{invoice.invoiceNo}
-          </p>
+          <h1 className="text-3xl font-normal tracking-tight">Invoice</h1>
+          <p className="mt-1 text-gray-500">#{invoice.invoiceNo}</p>
         </div>
 
-        <span
-          className={`rounded-full px-4 py-1 text-xs font-semibold
-            ${paymentStatus === "PAID"
-              ? "bg-emerald-50 text-emerald-700"
-              : paymentStatus === "PARTIALLY PAID"
-              ? "bg-amber-50 text-amber-700"
-              : "bg-rose-50 text-rose-700"
-            }`}
-        >
-          {paymentStatus}
+        <span className="rounded-full bg-gray-100 px-4 py-1 text-xs font-medium text-gray-700">
+          {status}
         </span>
       </div>
 
-      {/* Meta */}
-      <div className="mt-6 grid grid-cols-2 gap-12 text-xs">
+      {/* Dates */}
+      <div className="mt-8 grid grid-cols-2 gap-12 text-xs">
         <div>
-          <p className="font-semibold uppercase text-gray-500">From</p>
+          <p className="uppercase text-gray-400">From</p>
           <p className="mt-2 font-medium">{invoice.from.name}</p>
           <p>{invoice.from.address}</p>
-          <p>{invoice.from.city}, {invoice.from.country}</p>
         </div>
 
         <div>
-          <p className="font-semibold uppercase text-gray-500">Bill To</p>
+          <p className="uppercase text-gray-400">Bill to</p>
           <p className="mt-2 font-medium">{invoice.to.name}</p>
           <p>{invoice.to.address}</p>
-          <p>{invoice.to.city}, {invoice.to.country}</p>
         </div>
       </div>
 
       {/* Items */}
-      <table className="mt-10 w-full text-sm">
+      <table className="mt-12 w-full">
         <thead>
-          <tr className="border-b text-xs uppercase text-gray-500">
-            <th className="py-3 text-left">Item</th>
-            <th className="py-3 text-right">Qty</th>
-            <th className="py-3 text-right">Rate</th>
-            <th className="py-3 text-right">Total</th>
+          <tr className="border-b text-xs text-gray-500">
+            <th className="py-3 text-left font-medium">Description</th>
+            <th className="py-3 text-right font-medium">Qty</th>
+            <th className="py-3 text-right font-medium">Unit price</th>
+            <th className="py-3 text-right font-medium">Amount</th>
           </tr>
         </thead>
         <tbody>
@@ -71,7 +59,9 @@ export default function ModernTemplate({ invoice }: { invoice: Invoice }) {
             <tr key={item.id} className="border-b last:border-none">
               <td className="py-4">{item.name}</td>
               <td className="py-4 text-right">{item.qty}</td>
-              <td className="py-4 text-right">{invoice.currency} {item.rate.toFixed(2)}</td>
+              <td className="py-4 text-right">
+                {invoice.currency} {item.rate.toFixed(2)}
+              </td>
               <td className="py-4 text-right font-medium">
                 {invoice.currency} {(item.qty * item.rate).toFixed(2)}
               </td>
@@ -95,7 +85,7 @@ export default function ModernTemplate({ invoice }: { invoice: Invoice }) {
             </div>
           )}
 
-          <div className="flex justify-between border-t pt-3 text-lg font-semibold">
+          <div className="flex justify-between border-t pt-3 text-base font-medium">
             <span>Total</span>
             <span>{invoice.currency} {total.toFixed(2)}</span>
           </div>
@@ -104,9 +94,9 @@ export default function ModernTemplate({ invoice }: { invoice: Invoice }) {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="flex justify-between text-xl font-bold text-rose-600"
+              className="flex justify-between pt-2 text-lg font-semibold"
             >
-              <span>Amount Due</span>
+              <span>Amount due</span>
               <span>{invoice.currency} {due.toFixed(2)}</span>
             </motion.div>
           )}

@@ -1,11 +1,43 @@
 @import "tailwindcss";
+
+
 @media print {
-  body {
-    background: white;
+ @page {
+    size: A4;
+    margin: 20mm;
   }
 
   #invoice-print {
     box-shadow: none;
     margin: 0;
+  }
+  /* Hide EVERYTHING by default */
+  body * {
+    
+    visibility: hidden !important;
+  }
+
+  /* Show only the print area */
+  .print-area,
+  .print-area * {
+    visibility: visible !important;
+  }
+
+  /* Position print content correctly */
+  .print-area {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Remove backgrounds & shadows */
+  body {
+    background: white !important;
+  }
+
+  .no-print {
+    display: none !important;
   }
 }
