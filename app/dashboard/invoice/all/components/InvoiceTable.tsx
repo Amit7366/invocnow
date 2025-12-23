@@ -1,6 +1,7 @@
+"use client";
+
+import { useMemo, useState } from "react";
 import InvoiceRow from "./InvoiceRow";
-
-
 
 const invoices = [
   {
@@ -27,19 +28,37 @@ const invoices = [
 ];
 
 export default function InvoiceTable() {
+  const [query, setQuery] = useState("");
+
+  /** 🔍 Filter logic */
+  const filteredInvoices = useMemo(() => {
+    if (!query.trim()) return invoices;
+
+    const q = query.toLowerCase();
+
+    return invoices.filter(
+      (inv) =>
+        inv.invoiceNo.toLowerCase().includes(q) ||
+        inv.client.toLowerCase().includes(q) ||
+        inv.status.toLowerCase().includes(q)
+    );
+  }, [query]);
+
   return (
     <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-2xl shadow-sm">
       {/* Header */}
-      <div className="p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+      <div className="p-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
           ইনভয়েস তালিকা
         </h2>
 
         <input
           type="text"
-          placeholder="ইনভয়েস বা ক্লায়েন্ট খুঁজুন..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="ইনভয়েস / ক্লায়েন্ট / স্ট্যাটাস খুঁজুন"
           className="
-            w-full md:w-64
+            w-full sm:w-72
             px-3 py-2 rounded-lg
             bg-gray-50 dark:bg-gray-700
             text-gray-900 dark:text-white
@@ -50,10 +69,10 @@ export default function InvoiceTable() {
         />
       </div>
 
-      {/* Table */}
-      <div className="overflow-x-auto">
+      {/* Table Wrapper */}
+      <div className="relative w-full md:w-auto overflow-x-auto">
         <table className="w-full text-sm">
-          <thead className="bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+          <thead className="sticky top-0 z-10 bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
             <tr>
               <th className="px-4 py-3 text-left">ইনভয়েস</th>
               <th className="px-4 py-3 text-left">ক্লায়েন্ট</th>
@@ -65,11 +84,27 @@ export default function InvoiceTable() {
           </thead>
 
           <tbody>
-            {invoices.map((inv) => (
-              <InvoiceRow key={inv.invoiceNo} {...inv} />
-            ))}
+            {filteredInvoices.length > 0 ? (
+              filteredInvoices.map((inv) => (
+                <InvoiceRow key={inv.invoiceNo} {...inv} />
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan={6}
+                  className="px-4 py-8 text-center text-gray-500 dark:text-gray-400"
+                >
+                  কোনো ইনভয়েস পাওয়া যায়নি
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
+      </div>
+
+      {/* Mobile hint */}
+      <div className="px-4 py-2 text-xs text-gray-400 dark:text-gray-500 sm:hidden">
+        ← টেবিল দেখতে বামে/ডানে স্ক্রল করুন
       </div>
     </div>
   );

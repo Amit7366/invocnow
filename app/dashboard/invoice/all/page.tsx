@@ -2,7 +2,7 @@ import InvoiceTable from "./components/InvoiceTable";
 
 export default function InvoiceListPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 overflow-x-auto">
       <div>
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
           ইনভয়েসসমূহ
@@ -12,7 +12,9 @@ export default function InvoiceListPage() {
         </p>
       </div>
 
-      <InvoiceTable />
+      <div className="max-w-full">
+        <InvoiceTable />
+      </div>
     </div>
   );
 }

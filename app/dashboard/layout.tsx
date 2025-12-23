@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
+import { SidebarProvider } from "./context/SidebarContext";
 
 export default async function DashboardLayout({
   children,
@@ -10,16 +11,17 @@ export default async function DashboardLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions);
-
   if (!session) redirect("/");
 
   return (
-    <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
-      <Sidebar />
-      <div className="flex-1">
-        <Topbar />
-        <main className="p-6">{children}</main>
+    <SidebarProvider>
+      <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
+        <Sidebar />
+        <div className="w-screen md:w-[calc(100vw-256px)]">
+          <Topbar />
+          <main className="p-4 md:p-6">{children}</main>
+        </div>
       </div>
-    </div>
+    </SidebarProvider>
   );
 }
