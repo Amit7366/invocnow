@@ -2,7 +2,6 @@
 
 import { useInvoiceStore } from "@/app/store/useInvoiceStore";
 
-
 export default function LogoUploader() {
   const { invoice, update } = useInvoiceStore();
 

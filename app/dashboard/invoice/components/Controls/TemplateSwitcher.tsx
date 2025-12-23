@@ -3,7 +3,6 @@
 import { useInvoiceStore } from "@/app/store/useInvoiceStore";
 
 
-
 export default function TemplateSwitcher() {
   const { invoice, update } = useInvoiceStore();
 

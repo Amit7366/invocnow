@@ -50,7 +50,7 @@ export default function HomePage() {
             <div className="hidden md:block">
               {session ? (
                 <Link
-                  href="/invoice"
+                  href="/dashboard"
                   className="px-6 py-2 bg-slate-900 text-white rounded-full font-bold shadow-lg"
                 >
                   ড্যাশবোর্ড
@@ -94,12 +94,22 @@ export default function HomePage() {
                 <a href="#contact" onClick={() => setIsMenuOpen(false)}>
                   যোগাযোগ
                 </a>
-                <button
-                  onClick={() => signIn("google")}
-                  className="w-full py-3 bg-[#57BEA4] text-white rounded-xl"
-                >
-                  লগইন করুন
-                </button>
+
+                {session ? (
+                  <Link
+                    href="/dashboard"
+                    className="px-6 py-2 bg-slate-900 text-white rounded-full font-bold shadow-lg"
+                  >
+                    ড্যাশবোর্ড
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => signIn("google")}
+                    className="w-full py-3 bg-[#57BEA4] text-white rounded-xl"
+                  >
+                    লগইন করুন
+                  </button>
+                )}
               </div>
             </motion.div>
           )}
