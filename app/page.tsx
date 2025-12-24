@@ -2,12 +2,14 @@
 
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   // Animation Variants
   const fadeIn = {
@@ -16,6 +18,12 @@ export default function HomePage() {
     viewport: { once: true },
     transition: { duration: 0.6 },
   };
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.replace("/dashboard");
+    }
+  }, [status, router]);
 
   return (
     <div className="min-h-screen bg-[#FBFDFB] font-sans text-slate-900 overflow-x-hidden">
@@ -51,14 +59,14 @@ export default function HomePage() {
               {session ? (
                 <Link
                   href="/dashboard"
-                  className="px-6 py-2 bg-slate-900 text-white rounded-full font-bold shadow-lg"
+                  className="cursor-pointer px-6 py-2 bg-slate-900 text-white rounded-full font-bold shadow-lg"
                 >
                   ড্যাশবোর্ড
                 </Link>
               ) : (
                 <button
                   onClick={() => signIn("google")}
-                  className="px-6 py-2 bg-[#57BEA4] text-white rounded-full font-bold shadow-lg shadow-green-100"
+                  className="cursor-pointer px-6 py-2 bg-[#57BEA4] text-white rounded-full font-bold shadow-lg shadow-green-100"
                 >
                   শুরু করুন
                 </button>

@@ -21,13 +21,13 @@ export default function Sidebar() {
       {open && (
         <div
           onClick={close}
-          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+          className="fixed left-0 h-screen overflow-y-auto inset-0 bg-black/40 z-40 md:hidden"
         />
       )}
 
       <aside
         className={`
-          fixed md:static z-50
+          fixed z-50
           h-screen w-64
           bg-white dark:bg-gray-800
           border-r dark:border-gray-700

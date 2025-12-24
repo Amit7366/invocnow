@@ -2,6 +2,7 @@
 
 import { useReactToPrint } from "react-to-print";
 import React from "react";
+import { Download } from "lucide-react";
 
 export default function DownloadButton({
   printRef,
@@ -13,13 +14,26 @@ export default function DownloadButton({
     documentTitle: "Invoice",
   });
 
+  const disabled = !printRef.current;
+
   return (
     <button
       onClick={handlePrint}
-      className="bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer"
-      disabled={!printRef.current}
+      disabled={disabled}
+      className={`
+        inline-flex items-center gap-2
+        px-5 py-2.5 rounded-xl text-sm font-medium
+        transition-all duration-200
+        focus:outline-none focus:ring-2 focus:ring-offset-2
+        ${
+          disabled
+            ? "bg-gray-300 dark:bg-gray-700 text-gray-500 cursor-not-allowed"
+            : "bg-blue-600 hover:bg-blue-700 active:scale-95 text-white focus:ring-blue-500"
+        }
+      `}
     >
-      Download / Print
+      <Download size={18} />
+      ইনভয়েস ডাউনলোড / প্রিন্ট
     </button>
   );
 }

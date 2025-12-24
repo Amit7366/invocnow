@@ -10,9 +10,9 @@ export default async function InvoiceLayout({
 }) {
   const session = await getServerSession(authOptions);
 
-  if (!session) {
-    redirect("/");
-  }
+  // if (!session) {
+  //   redirect("/");
+  // }
 
   return (
     <>

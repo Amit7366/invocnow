@@ -16,8 +16,10 @@ export default async function DashboardLayout({
   return (
     <SidebarProvider>
       <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
-        <Sidebar />
-        <div className="w-screen md:w-[calc(100vw-256px)]">
+        
+          <Sidebar />
+        
+        <div className="w-screen ml-0 md:ml-64 md:w-[calc(100vw-256px)]">
           <Topbar />
           <main className="p-4 md:p-6">{children}</main>
         </div>

@@ -27,7 +27,7 @@ export default function InvoicePreview() {
   const printRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="bg-gray-100 p-6">
+    <div className="bg-gray-100 min-h-screen p-6">
       <PreviewToolbar printRef={printRef} />
 
       <div
