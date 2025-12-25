@@ -1,0 +1,28 @@
+"use client";
+
+import { usePWAInstall } from "../hooks/usePWAInstall";
+
+
+
+export default function InstallAppBanner() {
+  const { canInstall, install } = usePWAInstall();
+
+  if (!canInstall) return null;
+
+  return (
+    <div className="fixed bottom-4 left-4 right-4 z-50 rounded-xl bg-blue-600 text-white p-4 shadow-lg flex items-center justify-between">
+      <div>
+        <p className="font-semibold">Invocnow ইনস্টল করুন</p>
+        <p className="text-sm opacity-90">
+          দ্রুত ইনভয়েস তৈরি করুন, অফলাইনে কাজ করুন
+        </p>
+      </div>
+      <button
+        onClick={install}
+        className="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium"
+      >
+        Install
+      </button>
+    </div>
+  );
+}
