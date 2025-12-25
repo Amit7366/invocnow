@@ -8,6 +8,7 @@ export default function AnalyticsPageView() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     if (!window.gtag) return;
 
     window.gtag("config", process.env.NEXT_PUBLIC_GA_ID!, {

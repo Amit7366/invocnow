@@ -4,7 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import InstallAppBanner from "./components/InstallAppBanner";
 import GoogleAnalytics from "./components/GoogleAnalytics";
-import AnalyticsPageView from "./components/AnalyticsPageView";
+import dynamic from "next/dynamic";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,8 +41,15 @@ export const metadata: Metadata = {
   },
 };
 
+const AnalyticsPageView = dynamic(
+  () => import("./components/AnalyticsPageView"),
+  { ssr: false }
+);
+
 
 // export const metadata: Metadata = {
+
+
 //   title: "Invocnow | বাংলাদেশের সেরা অনলাইন ইনভয়েস মেকার",
 //   description:
 //     "সহজেই প্রফেশনাল ইনভয়েস তৈরি করুন, পেমেন্ট ট্র্যাক করুন এবং আপনার ব্যবসার হিসাব রাখুন এক জায়গায়। ফ্রি ট্রায়াল শুরু করুন।",
