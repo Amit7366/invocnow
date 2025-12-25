@@ -14,7 +14,7 @@ export default function InstallAppBanner() {
       <div>
         <p className="font-semibold">Invocnow ইনস্টল করুন</p>
         <p className="text-sm opacity-90">
-          দ্রুত ইনভয়েস তৈরি করুন, অফলাইনে কাজ করুন
+          দ্রুত ইনভয়েস তৈরি করুন, <span>অফলাইনে কাজ করুন</span>
         </p>
       </div>
       <button
