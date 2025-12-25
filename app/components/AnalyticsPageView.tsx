@@ -1,20 +1,19 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 export default function AnalyticsPageView() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (!window.gtag) return;
 
     window.gtag("config", process.env.NEXT_PUBLIC_GA_ID!, {
-      page_path: pathname + searchParams.toString(),
+      page_path: pathname,
     });
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   return null;
 }

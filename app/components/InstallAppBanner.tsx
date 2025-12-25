@@ -10,7 +10,7 @@ export default function InstallAppBanner() {
   if (!canInstall) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 z-50 rounded-xl bg-blue-600 text-white p-4 shadow-lg flex items-center justify-between">
+    <div className="fixed w-56 h-56 bottom-4 right-4 z-999 rounded-xl bg-[#57BEA4] text-white p-4 shadow-lg flex flex-col items-center justify-between">
       <div>
         <p className="font-semibold">Invocnow ইনস্টল করুন</p>
         <p className="text-sm opacity-90">

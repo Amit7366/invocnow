@@ -3,8 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import InstallAppBanner from "./components/InstallAppBanner";
-import GoogleAnalytics from "./components/GoogleAnalytics";
-import dynamic from "next/dynamic";
+import AnalyticsProvider from "./components/AnalyticsProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,10 +40,6 @@ export const metadata: Metadata = {
   },
 };
 
-const AnalyticsPageView = dynamic(
-  () => import("./components/AnalyticsPageView"),
-  { ssr: false }
-);
 
 
 // export const metadata: Metadata = {
@@ -83,8 +78,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
-        <AnalyticsPageView />
+        <AnalyticsProvider />
         <InstallAppBanner/>
         <Providers>{children}</Providers>
       </body>
