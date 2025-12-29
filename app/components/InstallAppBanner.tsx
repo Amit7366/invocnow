@@ -43,9 +43,9 @@ export default function InstallAppBanner() {
 
           {/* Text */}
           <div className="flex-1">
-            <p className="font-semibold text-sm">Invocnow ইনস্টল করুন</p>
+            <p className="font-semibold text-sm">Invocnow Install Now</p>
             <p className="text-sm opacity-90 text-base">
-              দ্রুত ইনভয়েস তৈরি করুন, <span className="underline">অফলাইনে কাজ করুন</span>
+              Create invoices quickly, <span className="underline">Work offline</span>
             </p>
           </div>
 
@@ -63,7 +63,7 @@ export default function InstallAppBanner() {
               transition
             "
           >
-            ইনস্টল
+            Install
           </button>
         </motion.div>
       )}

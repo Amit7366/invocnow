@@ -35,20 +35,22 @@ export default function HomePage() {
             animate={{ opacity: 1, x: 0 }}
             className="text-2xl font-black text-[#57BEA4] flex items-center gap-2"
           >
-            <div className="w-8 h-8 bg-[#57BEA4] rounded-lg rotate-12 flex items-center justify-center text-white text-sm">
-              IN
-            </div>
-            Invocnow
+            <Link href={"/"}className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-[#57BEA4] rounded-lg rotate-12 flex items-center justify-center text-white text-sm">
+                IN
+              </div>
+              Invocnow
+            </Link>
           </motion.div>
 
           {/* Desktop Links */}
           <div className="hidden md:flex space-x-8 font-semibold text-slate-600">
-            {["Features", "Pricing", "Review", "Contact"].map((item) => (
+            {["features", "pricing", "review", "Contact"].map((item) => (
               // {["ফিচার", "প্রাইসিং", "রিভিউ", "যোগাযোগ"].map((item) => (
               <a
                 key={item}
                 href={`#${item}`}
-                className="hover:text-[#57BEA4] transition-colors"
+                className="hover:text-[#57BEA4] transition-colors capitalize"
               >
                 {item}
               </a>
@@ -70,7 +72,7 @@ export default function HomePage() {
                   onClick={() => signIn("google")}
                   className="cursor-pointer px-6 py-2 bg-[#57BEA4] text-white rounded-full font-bold shadow-lg shadow-green-100"
                 >
-                  Get Started
+                 Login
                   {/* শুরু করুন */}
                 </button>
               )}
@@ -173,21 +175,19 @@ export default function HomePage() {
               // onClick={() => signIn("google")}
               className="animate-bounce px-10 py-4 bg-slate-900 text-white rounded-2xl text-lg font-bold hover:shadow-2xl transition-all active:scale-95"
             >
-             Start Free
+              Start Free
             </Link>
-            <button className="px-10 py-4 border border-slate-200 rounded-2xl text-lg font-bold hover:bg-slate-50 transition-all">
+            <Link href={'#features'} className="px-10 py-4 border border-slate-200 rounded-2xl text-lg font-bold hover:bg-slate-50 transition-all">
               How to work?
-            </button>
+            </Link>
           </motion.div>
         </div>
       </section>
 
       {/* --- Auto-Scrolling Review Slider --- */}
-      <section className="py-20 bg-slate-900 overflow-hidden">
+      <section id="review" className="py-20 bg-slate-900 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
-          <h2 className="text-white text-3xl font-bold">
-            Happy Client
-          </h2>
+          <h2 className="text-white text-3xl font-bold">Happy Client</h2>
         </div>
 
         <div className="flex w-full">
@@ -203,7 +203,8 @@ export default function HomePage() {
               >
                 <div className="flex gap-1 text-yellow-400 mb-4">★★★★★</div>
                 <p className="text-slate-300 italic mb-6 whitespace-normal">
-                  "Great service! My business invoicing has become much easier now."
+                  "Great service! My business invoicing has become much easier
+                  now."
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 bg-[#57BEA4] rounded-full"></div>
@@ -228,29 +229,25 @@ export default function HomePage() {
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <PriceCard
-            title="বেসিক"
-            price="০"
-            features={["৫টি ইনভয়েস/মাস", "বেসিক টেম্পলেট", "PDF ডাউনলোড"]}
+            title="Basic"
+            price="0"
+            features={["5 invoices/month", "Basic template", "PDF download"]}
           />
           <PriceCard
-            title="প্রো"
-            price="৯৯৯"
+            title="Pro"
+            price="5"
             features={[
-              "আনলিমিটেড ইনভয়েস",
-              "কাস্টম ব্রান্ডিং",
-              "পেমেন্ট গেটওয়ে",
-              "প্রিমিয়াম সাপোর্ট",
+              "Unlimited Invoices",
+              "Custom Branding",
+              "Payment Gateway",
+              "Premium Support",
             ]}
             recommended
           />
           <PriceCard
-            title="এন্টারপ্রাইজ"
-            price="২৯৯৯"
-            features={[
-              "মাল্টিপল ইউজার",
-              "ইনভেন্টরি ম্যানেজমেন্ট",
-              "API এক্সেস",
-            ]}
+            title="Enterprise"
+            price="20"
+            features={["Multiple Users", "Inventory Management", "API Access"]}
           />
         </div>
       </section>
@@ -267,17 +264,17 @@ export default function HomePage() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                সময় বাঁচান, ব্যবসা বড় করুন
+                Save time, grow business
               </h2>
               <p className="text-slate-400 mb-10 text-lg">
-                আজই ইনভকনৌ-তে যোগ দিন এবং আপনার প্রথম প্রফেশনাল ইনভয়েস তৈরি করুন
-                মাত্র ৬০ সেকেন্ডে।
+                Join InvokNow today and create your first professional invoice
+                in just 60 seconds.
               </p>
               <button
                 onClick={() => signIn("google")}
                 className="bg-[#57BEA4] hover:bg-[#46a891] text-white px-12 py-4 rounded-2xl font-black text-xl transition-all hover:shadow-[0_0_30px_rgba(87,190,164,0.4)] active:scale-95"
               >
-                ফ্রি একাউন্ট খুলুন
+                Open a free account
               </button>
             </motion.div>
           </div>
@@ -285,15 +282,16 @@ export default function HomePage() {
       </section>
 
       {/* --- Interactive How it Works --- */}
-      <section className="py-24 bg-white relative overflow-hidden">
+      <section
+        id="features"
+        className="py-24 bg-white relative overflow-hidden"
+      >
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black tracking-tight">
-              মাত্র ৩টি সহজ ধাপে
+              In just 3 easy steps
             </h2>
-            <p className="text-slate-500 mt-2">
-              আপনার বিলিং প্রক্রিয়াকে অটোমেট করুন
-            </p>
+            <p className="text-slate-500 mt-2">Automate your billing process</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-12 relative">
@@ -302,19 +300,19 @@ export default function HomePage() {
 
             {[
               {
-                step: "০১",
-                title: "তথ্য যোগ করুন",
-                desc: "আপনার কোম্পানির লোগো এবং ক্লায়েন্ট ডিটেইলস একবার সেটআপ করুন।",
+                step: "01",
+                title: "Add information",
+                desc: "Set up your company logo and client details once.",
               },
               {
-                step: "০২",
-                title: "আইটেম নির্বাচন করুন",
-                desc: "আমাদের ড্রপডাউন থেকে সার্ভিস বা প্রোডাক্ট সিলেক্ট করে পরিমাণ লিখুন।",
+                step: "02",
+                title: "Select items",
+                desc: "Select a service or product from our dropdown and enter the quantity.",
               },
               {
-                step: "০৩",
-                title: "ম্যাজিক দেখুন",
-                desc: "ব্যাস! আপনার প্রফেশনাল ইনভয়েস রেডি ক্লায়েন্টকে পাঠানোর জন্য।",
+                step: "03",
+                title: "Watch the magic",
+                desc: "Various! Your professional invoice is ready to send to your client.",
               },
             ].map((item, index) => (
               <motion.div
@@ -337,20 +335,20 @@ export default function HomePage() {
       <section className="py-24 bg-slate-50">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-12">
-            সাধারণ কিছু প্রশ্ন
+            Some general questions
           </h2>
           <div className="space-y-4">
             <FAQItem
-              question="ইনভকনৌ কি ফ্রি?"
-              answer="হ্যাঁ, আপনি আমাদের বেসিক প্ল্যানটি সারাজীবন ফ্রি ব্যবহার করতে পারবেন।"
+              question="Is InvkNow free?"
+              answer="Yes, you can use our basic plan for free for life."
             />
             <FAQItem
-              question="আমার ডাটা কি নিরাপদ?"
-              answer="আমরা ইন্ডাস্ট্রি-স্ট্যান্ডার্ড এনক্রিপশন ব্যবহার করি, আপনার সব তথ্য আমাদের কাছে ১০০% নিরাপদ।"
+              question="Is my data safe?"
+              answer="We use industry-standard encryption, all your information is 100% safe with us."
             />
             <FAQItem
-              question="আমি কি মোবাইলে ব্যবহার করতে পারব?"
-              answer="অবশ্যই! আমাদের সাইটটি মোবাইল, ট্যাবলেট এবং পিসি সব ডিভাইসে চমৎকার কাজ করে।"
+              question="Can I use it on mobile?"
+              answer="Of course! Our site works great on all devices: mobile, tablet, and PC."
             />
           </div>
         </div>
@@ -360,20 +358,22 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-white text-center">
             <div className="space-y-2">
-              <div className="text-5xl font-black italic">৯৫%</div>
-              <p className="text-green-50 font-medium">দ্রুত পেমেন্ট কালেকশন</p>
+              <div className="text-5xl font-black italic">95%</div>
+              <p className="text-green-50 font-medium">
+                Fast payment collection
+              </p>
             </div>
             <div className="space-y-2">
-              <div className="text-5xl font-black italic">৳০</div>
-              <p className="text-green-50 font-medium">হিডেন কোনো চার্জ নেই</p>
+              <div className="text-5xl font-black italic">$0</div>
+              <p className="text-green-50 font-medium">No hidden charges.</p>
             </div>
             <div className="space-y-2">
-              <div className="text-5xl font-black italic">২৪/৭</div>
-              <p className="text-green-50 font-medium">ক্লাউড ব্যাকআপ সুবিধা</p>
+              <div className="text-5xl font-black italic">24/7</div>
+              <p className="text-green-50 font-medium">Cloud backup facility</p>
             </div>
             <div className="space-y-2">
-              <div className="text-5xl font-black italic">৫০+</div>
-              <p className="text-green-50 font-medium">রেডিমেড টেম্পলেট</p>
+              <div className="text-5xl font-black italic">5+</div>
+              <p className="text-green-50 font-medium">Ready-made templates</p>
             </div>
           </div>
         </div>
@@ -389,18 +389,18 @@ export default function HomePage() {
           >
             <div className="absolute -top-20 -left-20 w-64 h-64 bg-[#57BEA4]/20 blur-[100px] rounded-full"></div>
             <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-6">
-              বাকি টাকা আদায়ে আর <br />
-              <span className="text-[#57BEA4]">টেনশন নেই!</span>
+              No more tension to collect the <br />
+              <span className="text-[#57BEA4]">remaining money!</span>
             </h2>
             <p className="text-slate-400 text-lg mb-8">
-              আমাদের "Smart Reminder" সিস্টেম ক্লায়েন্টকে অটোমেটিক হোয়াটসঅ্যাপ
-              এবং ইমেইল রিমাইন্ডার পাঠাবে। আপনাকে আর বারবার ফোন করতে হবে না।
+              Our "Smart Reminder" system will send automatic WhatsApp and email
+              reminders to clients. You don't have to call again and again.
             </p>
             <ul className="space-y-4">
               {[
-                "শিডিউল রিমাইন্ডার",
-                "পেমেন্ট কনফার্মেশন নোট",
-                "বাকি টাকার সামারি রিপোর্ট",
+                "Schedule Reminder",
+                "Payment Confirmation Note",
+                "Balance Summary Report",
               ].map((text) => (
                 <li
                   key={text}
@@ -421,9 +421,7 @@ export default function HomePage() {
             className="relative bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-[3rem] border border-slate-700 shadow-2xl"
           >
             <div className="flex justify-between items-center mb-8 border-b border-slate-700 pb-4">
-              <div className="text-white font-bold">
-                স্মার্ট রিমাইন্ডার প্রিভিউ
-              </div>
+              <div className="text-white font-bold">Smart Reminder Preview</div>
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -432,10 +430,10 @@ export default function HomePage() {
             </div>
             <div className="space-y-4">
               <div className="p-4 bg-slate-700/50 rounded-2xl border border-slate-600 text-sm text-slate-300">
-                "প্রিয় ক্লায়েন্ট, আপনার ইনভয়েস #১০২ এর পেমেন্ট আগামীকাল ডিউ..."
+                "Dear Client, your payment for invoice #102 is due tomorrow..."
               </div>
               <div className="p-4 bg-[#57BEA4]/10 rounded-2xl border border-[#57BEA4]/30 text-sm text-[#57BEA4] text-right">
-                রিমাইন্ডার পাঠানো হয়েছে (২:৩০ PM)
+                Reminder sent (2:30 PM)
               </div>
             </div>
           </motion.div>
@@ -455,25 +453,25 @@ export default function HomePage() {
 
           <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tight">
-              আপনার ব্যবসাকে আজই <br /> ডিজিটাল করুন
+              Digitalize your business . <br /> today
             </h2>
             <p className="text-green-50 text-lg md:text-xl mb-12 max-w-2xl mx-auto opacity-90">
-              কোনো ক্রেডিট কার্ড ছাড়াই শুরু করুন। আজই যোগ দিন বাংলাদেশের সবচেয়ে
-              সহজ ইনভয়েসিং প্ল্যাটফর্মে।
+              Get started without a credit card. Join Bangladesh's easiest
+              invoicing platform today.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-6">
               <button
                 onClick={() => signIn("google")}
                 className="px-10 py-5 bg-white text-[#57BEA4] rounded-2xl text-xl font-extrabold hover:bg-slate-900 hover:text-white transition-all transform hover:scale-105 shadow-xl"
               >
-                গুগল দিয়ে শুরু করুন
+                Start with Google
               </button>
               <button className="px-10 py-5 bg-emerald-700 text-white rounded-2xl text-xl font-extrabold hover:bg-emerald-800 transition-all border border-emerald-400/30">
-                ডেমো দেখুন
+                Watch the demo
               </button>
             </div>
             <p className="mt-8 text-green-100 text-sm font-medium">
-              ⭐ কোনো লুকানো ফি নেই • ২৪/৭ কাস্টমার সাপোর্ট
+              ⭐ No hidden fees • 24/7 customer support
             </p>
           </div>
         </motion.div>
@@ -486,25 +484,25 @@ export default function HomePage() {
               Invocnow
             </div>
             <p className="text-slate-400 max-w-sm">
-              আমরা বাংলাদেশের উদ্যোক্তাদের ডিজিটাল রূপান্তরের স্বপ্ন দেখি। বিলিং
-              হোক সহজ এবং সুন্দর।
+              We dream of digital transformation for entrepreneurs in
+              Bangladesh. Billing should be easy and beautiful.
             </p>
           </div>
           <div>
             <h4 className="font-bold mb-6">লিঙ্ক</h4>
             <ul className="space-y-4 text-slate-400">
               <li>
-                <a href="#">প্রাইভেসি পলিসি</a>
+                <a href="#">Privacy Policy</a>
               </li>
               <li>
-                <a href="#">টার্মস অফ সার্ভিস</a>
+                <a href="#">Terms of Service</a>
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="font-bold mb-6">যোগাযোগ</h4>
-            <p className="text-slate-400 text-sm">সকাল ১০টা - রাত ১০টা</p>
-            <p className="text-[#57BEA4] font-bold">support@invocnow.com</p>
+            <h4 className="font-bold mb-6">Contact</h4>
+            <p className="text-slate-400 text-sm">10 am - 10 pm</p>
+            <p className="text-[#57BEA4] font-bold">invocnow@gmail.com</p>
           </div>
         </div>
       </footer>
@@ -525,8 +523,8 @@ function PriceCard({ title, price, features, recommended = false }: any) {
     >
       <h3 className="text-xl font-bold mb-4">{title}</h3>
       <div className="text-4xl font-black mb-6">
-        ৳{price}
-        <span className="text-lg text-slate-400 font-medium">/মাস</span>
+        ${price}
+        <span className="text-lg text-slate-400 font-medium">/month</span>
       </div>
       <ul className="text-left space-y-4 mb-8">
         {features.map((f: string) => (
@@ -542,7 +540,7 @@ function PriceCard({ title, price, features, recommended = false }: any) {
             : "bg-slate-100 text-slate-800"
         }`}
       >
-        প্যাকটি কিনুন
+        Buy the pack
       </button>
     </motion.div>
   );
