@@ -9,30 +9,30 @@ export default function DashboardPage() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-          ড্যাশবোর্ড
+          Dashboard
         </h1>
         <p className="text-gray-600 dark:text-gray-400">
-          আজকের ব্যবসার সারসংক্ষেপ
+          Summary of Today's business
         </p>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <StatCard
-          title="আজকের মোট আয়"
-          value="৳ ২,৪৫০"
+          title="Today's Total Income"
+          value="$ 2,450"
           icon={<DollarSign />}
           accent="bg-green-500"
         />
         <StatCard
-          title="এই মাসের ইনভয়েস"
-          value="৩৪ টি"
+          title="Total invoice of month"
+          value="34"
           icon={<FileText />}
           accent="bg-blue-500"
         />
         <StatCard
-          title="বকেয়া পেমেন্ট"
-          value="৳ ১,২০০"
+          title="Due Payment"
+          value="$ 1200"
           icon={<Clock />}
           accent="bg-orange-500"
         />

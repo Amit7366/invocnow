@@ -20,7 +20,7 @@ export default function Topbar() {
         </button>
 
         <h1 className="font-semibold text-lg text-gray-900 dark:text-white">
-          ড্যাশবোর্ড
+          Dashboard
         </h1>
       </div>
 
@@ -32,7 +32,7 @@ export default function Topbar() {
           onClick={() => signOut()}
           className="px-3 py-1 text-sm bg-red-500 text-white rounded-lg"
         >
-          লগআউট
+          Logout
         </button>
       </div>
     </header>

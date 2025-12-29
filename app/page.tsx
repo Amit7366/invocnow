@@ -8,16 +8,9 @@ import { useRouter } from "next/navigation";
 
 export default function HomePage() {
   const { data: session, status } = useSession();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
 
-  // Animation Variants
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.6 },
-  };
+
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -27,107 +20,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#FBFDFB] font-sans text-slate-900 overflow-x-hidden">
-      {/* --- Modern Mobile Navbar --- */}
-      <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-slate-100">
-        <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-2xl font-black text-[#57BEA4] flex items-center gap-2"
-          >
-            <Link href={"/"}className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-[#57BEA4] rounded-lg rotate-12 flex items-center justify-center text-white text-sm">
-                IN
-              </div>
-              Invocnow
-            </Link>
-          </motion.div>
-
-          {/* Desktop Links */}
-          <div className="hidden md:flex space-x-8 font-semibold text-slate-600">
-            {["features", "pricing", "review", "Contact"].map((item) => (
-              // {["ফিচার", "প্রাইসিং", "রিভিউ", "যোগাযোগ"].map((item) => (
-              <a
-                key={item}
-                href={`#${item}`}
-                className="hover:text-[#57BEA4] transition-colors capitalize"
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-4">
-            <div className="hidden md:block">
-              {session ? (
-                <Link
-                  href="/dashboard"
-                  className="cursor-pointer px-6 py-2 bg-slate-900 text-white rounded-full font-bold shadow-lg"
-                >
-                  {/* ড্যাশবোর্ড */}
-                  Dashboard
-                </Link>
-              ) : (
-                <button
-                  onClick={() => signIn("google")}
-                  className="cursor-pointer px-6 py-2 bg-[#57BEA4] text-white rounded-full font-bold shadow-lg shadow-green-100"
-                >
-                 Login
-                  {/* শুরু করুন */}
-                </button>
-              )}
-            </div>
-
-            {/* Hamburger Menu Icon */}
-            <button
-              className="md:hidden text-2xl"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? "✕" : "☰"}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu Dropdown */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="md:hidden bg-white border-b border-slate-100 overflow-hidden"
-            >
-              <div className="flex flex-col p-6 space-y-4 font-bold">
-                <a href="#features" onClick={() => setIsMenuOpen(false)}>
-                  Feature
-                </a>
-                <a href="#pricing" onClick={() => setIsMenuOpen(false)}>
-                  Pricing
-                </a>
-                <a href="#contact" onClick={() => setIsMenuOpen(false)}>
-                  Contact
-                </a>
-
-                {session ? (
-                  <Link
-                    href="/dashboard"
-                    className="px-6 py-2 bg-slate-900 text-white rounded-full font-bold shadow-lg"
-                  >
-                    Dashboard
-                  </Link>
-                ) : (
-                  <button
-                    onClick={() => signIn("google")}
-                    className="w-full py-3 bg-[#57BEA4] text-white rounded-xl"
-                  >
-                    Login
-                  </button>
-                )}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+      
 
       {/* --- Hero Section with Motion --- */}
       <section className="relative pt-40 pb-20 lg:pt-56 lg:pb-32">
@@ -149,7 +42,7 @@ export default function HomePage() {
             transition={{ delay: 0.2 }}
           >
             Smart Accoutant <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#57BEA4] to-emerald-600">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#57BEA4] to-emerald-600">
               Your Business
             </span>
           </motion.h1>
@@ -199,7 +92,7 @@ export default function HomePage() {
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div
                 key={i}
-                className="inline-block p-8 bg-slate-800 border border-slate-700 rounded-[2rem] min-w-[350px]"
+                className="inline-block p-8 bg-slate-800 border border-slate-700 rounded-4xl min-w-87.5"
               >
                 <div className="flex gap-1 text-yellow-400 mb-4">★★★★★</div>
                 <p className="text-slate-300 italic mb-6 whitespace-normal">
@@ -256,7 +149,7 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="bg-slate-900 rounded-[3rem] p-8 md:p-16 text-center relative overflow-hidden group">
             {/* গ্লো ইফেক্ট */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#57BEA4]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div className="absolute inset-0 bg-linear-to-r from-[#57BEA4]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -418,7 +311,7 @@ export default function HomePage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            className="relative bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-[3rem] border border-slate-700 shadow-2xl"
+            className="relative bg-linear-to-br from-slate-800 to-slate-900 p-8 rounded-[3rem] border border-slate-700 shadow-2xl"
           >
             <div className="flex justify-between items-center mb-8 border-b border-slate-700 pb-4">
               <div className="text-white font-bold">Smart Reminder Preview</div>
@@ -445,7 +338,7 @@ export default function HomePage() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          className="max-w-7xl mx-auto bg-gradient-to-r from-[#57BEA4] to-emerald-600 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl shadow-green-200"
+          className="max-w-7xl mx-auto bg-linear-to-r from-[#57BEA4] to-emerald-600 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl shadow-green-200"
         >
           {/* Background Decorative Circles */}
           <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>

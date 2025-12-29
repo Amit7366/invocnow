@@ -12,10 +12,10 @@ export default function StatusBadge({ status }: { status: string }) {
       }`}
     >
       {status === "paid"
-        ? "পরিশোধিত"
-        : status === "due"
-        ? "বকেয়া"
-        : "মেয়াদোত্তীর্ণ"}
+        ? "PAID"
+        : status === "DUE"
+        ? "DUE"
+        : "EXPIRED"}
     </span>
   );
 }

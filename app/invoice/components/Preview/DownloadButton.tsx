@@ -14,9 +14,8 @@ export default function DownloadButton({
   printRef: React.RefObject<HTMLDivElement | null>;
 }) {
   const { invoice } = useInvoiceStore();
-  const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
- console.log("SESSION 👉", session);
+
 
 
 
@@ -26,22 +25,22 @@ export default function DownloadButton({
   });
 
   const handleSaveAndPrint = async () => {
-    if (!session || !printRef.current) return;
+   
 
     try {
       setLoading(true);
 
-      await createInvoice(
-        {
-          ...invoice,
-          issueDate: invoice.issueDate || new Date().toISOString(),
-        },
-        (session as any).accessToken // or jwt token
-      );
+      // await createInvoice(
+      //   {
+      //     ...invoice,
+      //     issueDate: invoice.issueDate || new Date().toISOString(),
+      //   },
+      //   (session as any).accessToken // or jwt token
+      // );
 
       handlePrint?.(); // ✅ print only after save
     } catch (error) {
-      alert("ইনভয়েস সংরক্ষণ করা যায়নি!");
+      alert("Invoice could not be saved.!");
       console.error(error);
     } finally {
       setLoading(false);
@@ -51,8 +50,8 @@ export default function DownloadButton({
   return (
     <button
       onClick={handleSaveAndPrint}
-      disabled={loading || !printRef.current}
-      className={`
+      disabled={!printRef.current}
+      className={`cursor-pointer
         inline-flex items-center gap-2
         px-5 py-2.5 rounded-xl text-sm font-medium
         transition-all duration-200
@@ -64,7 +63,7 @@ export default function DownloadButton({
       `}
     >
       <Download size={18} />
-      {loading ? "সংরক্ষণ হচ্ছে..." : "ইনভয়েস সংরক্ষণ ও প্রিন্ট"}
+      {loading ? "Saving..." : "Save and print invoices"}
     </button>
   );
 }

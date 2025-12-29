@@ -28,14 +28,14 @@ export default function InvoiceRow({
         {date}
       </td>
       <td className="px-4 py-3 font-semibold text-gray-900 dark:text-white">
-        ৳ {amount}
+        $ {amount}
       </td>
       <td className="px-4 py-3">
         <StatusBadge status={status} />
       </td>
       <td className="px-4 py-3 text-right">
         <Link href={'/dashboard/invoice/1'} className="text-blue-600 dark:text-blue-400 text-sm hover:underline">
-          দেখুন
+          See More
         </Link>
       </td>
     </tr>

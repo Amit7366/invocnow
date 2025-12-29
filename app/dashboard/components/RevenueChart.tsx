@@ -22,7 +22,7 @@ export default function RevenueChart() {
   return (
     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm">
       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-        মাসভিত্তিক আয়
+        Monthly Income
       </h3>
 
       <div className="h-[300px]">

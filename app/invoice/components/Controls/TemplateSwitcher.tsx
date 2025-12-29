@@ -3,7 +3,7 @@
 import { useInvoiceStore } from "@/app/store/useInvoiceStore";
 
 const templates = [
-  { key: "classic", label: "ক্লাসিক" },
+  { key: "classic", label: "classic" },
   // { key: "modern", label: "মডার্ন" },
   // { key: "compact", label: "কমপ্যাক্ট" },
   // { key: "stripe", label: "Stripe" },
@@ -16,14 +16,17 @@ export default function TemplateSwitcher() {
 
   return (
     <div className="flex flex-wrap gap-3">
+      <h4>Choose Tempalte:</h4>
       {templates.map((t) => {
         const active = invoice.theme === t.key;
 
         return (
-          <button
-            key={t.key}
-            onClick={() => update({ theme: t.key as any })}
-            className={`
+          
+            
+            <button
+              key={t.key}
+              onClick={() => update({ theme: t.key as any })}
+              className={`
               px-4 py-1.5 rounded-full text-sm font-medium
               cursor-pointer
               transition-all duration-200
@@ -41,9 +44,10 @@ export default function TemplateSwitcher() {
                   `
               }
             `}
-          >
-            {t.label}
-          </button>
+            >
+              {t.label}
+            </button>
+          
         );
       })}
     </div>

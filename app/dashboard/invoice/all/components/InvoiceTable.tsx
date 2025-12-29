@@ -49,14 +49,14 @@ export default function InvoiceTable() {
       {/* Header */}
       <div className="p-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-          ইনভয়েস তালিকা
+          Invoice list
         </h2>
 
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="ইনভয়েস / ক্লায়েন্ট / স্ট্যাটাস খুঁজুন"
+          placeholder="Find Invoice/Client/Status"
           className="
             w-full sm:w-72
             px-3 py-2 rounded-lg
@@ -74,12 +74,12 @@ export default function InvoiceTable() {
         <table className="w-full text-sm">
           <thead className="sticky top-0 z-10 bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
             <tr>
-              <th className="px-4 py-3 text-left">ইনভয়েস</th>
-              <th className="px-4 py-3 text-left">ক্লায়েন্ট</th>
-              <th className="px-4 py-3 text-left">তারিখ</th>
-              <th className="px-4 py-3 text-left">মোট</th>
-              <th className="px-4 py-3 text-left">স্ট্যাটাস</th>
-              <th className="px-4 py-3 text-right">অ্যাকশন</th>
+              <th className="px-4 py-3 text-left">Invoice</th>
+              <th className="px-4 py-3 text-left">Client</th>
+              <th className="px-4 py-3 text-left">Date</th>
+              <th className="px-4 py-3 text-left">Total</th>
+              <th className="px-4 py-3 text-left">Status</th>
+              <th className="px-4 py-3 text-right">Action</th>
             </tr>
           </thead>
 
@@ -94,7 +94,7 @@ export default function InvoiceTable() {
                   colSpan={6}
                   className="px-4 py-8 text-center text-gray-500 dark:text-gray-400"
                 >
-                  কোনো ইনভয়েস পাওয়া যায়নি
+                  No invoices found.
                 </td>
               </tr>
             )}
@@ -104,7 +104,7 @@ export default function InvoiceTable() {
 
       {/* Mobile hint */}
       <div className="px-4 py-2 text-xs text-gray-400 dark:text-gray-500 sm:hidden">
-        ← টেবিল দেখতে বামে/ডানে স্ক্রল করুন
+        ← Scroll left/right to see the table
       </div>
     </div>
   );

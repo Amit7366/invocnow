@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 import { useSidebar } from "../context/SidebarContext";
 
 const menu = [
-  { label: "ড্যাশবোর্ড", href: "/dashboard", icon: LayoutDashboard },
-  { label: "ইনভয়েসসমূহ", href: "/dashboard/invoice/all", icon: FileText },
-  { label: "নতুন ইনভয়েস", href: "/dashboard/invoice", icon: Plus },
+  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { label: "Invoices", href: "/dashboard/invoice/all", icon: FileText },
+  { label: "New Invoice", href: "/dashboard/invoice", icon: Plus },
 ];
 
 export default function Sidebar() {

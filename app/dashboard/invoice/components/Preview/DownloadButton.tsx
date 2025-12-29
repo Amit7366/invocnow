@@ -31,17 +31,17 @@ export default function DownloadButton({
     try {
       setLoading(true);
 
-      await createInvoice(
-        {
-          ...invoice,
-          issueDate: invoice.issueDate || new Date().toISOString(),
-        },
-        (session as any).accessToken // or jwt token
-      );
+      // await createInvoice(
+      //   {
+      //     ...invoice,
+      //     issueDate: invoice.issueDate || new Date().toISOString(),
+      //   },
+      //   (session as any).accessToken // or jwt token
+      // );
 
       handlePrint?.(); // ✅ print only after save
     } catch (error) {
-      alert("ইনভয়েস সংরক্ষণ করা যায়নি!");
+      alert("Invoice could not be saved.!");
       console.error(error);
     } finally {
       setLoading(false);
@@ -64,7 +64,7 @@ export default function DownloadButton({
       `}
     >
       <Download size={18} />
-      {loading ? "সংরক্ষণ হচ্ছে..." : "ইনভয়েস সংরক্ষণ ও প্রিন্ট"}
+      {loading ? "Saving..." : "Save and print invoices"}
     </button>
   );
 }

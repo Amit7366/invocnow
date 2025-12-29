@@ -6,7 +6,7 @@ import InvoicePreview from "./components/Preview/InvoicePreview";
 
 export default function InvoicePage() {
   return (
-    <div className="flex flex-col md:flex-row justify-between gap-3 min-h-screen">
+    <div className="flex flex-col md:flex-row justify-between gap-3 min-h-screen mt-[70px]">
       <div className="no-print w-full md:w-2/5">
         <InvoiceEditor />
       </div>
