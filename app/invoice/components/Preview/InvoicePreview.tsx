@@ -1,14 +1,16 @@
 "use client";
 
-import { useRef } from "react";
-import ClassicTemplate from "../../templates/Classic";
-import ModernTemplate from "../../templates/Modern";
-import CompactTemplate from "../../templates/Compact";
-import PreviewToolbar from "./PreviewToolbar";
-import StripeTemplate from "../../templates/StripeTemplate";
-import ZohoTemplate from "../../templates/ZohoTemplate";
-import FreshBooksTemplate from "../../templates/FreshBooksTemplate";
+
 import { useInvoiceStore } from "@/app/store/useInvoiceStore";
+import ClassicTemplate from "@/app/templates/Classic";
+import CompactTemplate from "@/app/templates/Compact";
+import FreshBooksTemplate from "@/app/templates/FreshBooksTemplate";
+import ModernTemplate from "@/app/templates/Modern";
+import StripeTemplate from "@/app/templates/StripeTemplate";
+import ZohoTemplate from "@/app/templates/ZohoTemplate";
+import { useRef } from "react";
+import PreviewToolbar from "./PreviewToolbar";
+
 
 const templates = {
   classic: ClassicTemplate,
@@ -26,7 +28,7 @@ export default function InvoicePreview() {
   const printRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="bg-gray-100 p-6">
+    <div className="bg-gray-100 min-h-screen p-6">
       <PreviewToolbar printRef={printRef} />
 
       <div
@@ -40,7 +42,6 @@ export default function InvoicePreview() {
 }
 
 // "use client";
-
 
 // import { useInvoiceStore } from "@/app/store/useInvoiceStore";
 // import ClassicTemplate from "../../templates/Classic";

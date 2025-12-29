@@ -43,7 +43,8 @@ export default function HomePage() {
 
           {/* Desktop Links */}
           <div className="hidden md:flex space-x-8 font-semibold text-slate-600">
-            {["ফিচার", "প্রাইসিং", "রিভিউ", "যোগাযোগ"].map((item) => (
+            {["Features", "Pricing", "Review", "Contact"].map((item) => (
+              // {["ফিচার", "প্রাইসিং", "রিভিউ", "যোগাযোগ"].map((item) => (
               <a
                 key={item}
                 href={`#${item}`}
@@ -61,14 +62,16 @@ export default function HomePage() {
                   href="/dashboard"
                   className="cursor-pointer px-6 py-2 bg-slate-900 text-white rounded-full font-bold shadow-lg"
                 >
-                  ড্যাশবোর্ড
+                  {/* ড্যাশবোর্ড */}
+                  Dashboard
                 </Link>
               ) : (
                 <button
                   onClick={() => signIn("google")}
                   className="cursor-pointer px-6 py-2 bg-[#57BEA4] text-white rounded-full font-bold shadow-lg shadow-green-100"
                 >
-                  শুরু করুন
+                  Get Started
+                  {/* শুরু করুন */}
                 </button>
               )}
             </div>
@@ -94,13 +97,13 @@ export default function HomePage() {
             >
               <div className="flex flex-col p-6 space-y-4 font-bold">
                 <a href="#features" onClick={() => setIsMenuOpen(false)}>
-                  ফিচার
+                  Feature
                 </a>
                 <a href="#pricing" onClick={() => setIsMenuOpen(false)}>
-                  প্রাইসিং
+                  Pricing
                 </a>
                 <a href="#contact" onClick={() => setIsMenuOpen(false)}>
-                  যোগাযোগ
+                  Contact
                 </a>
 
                 {session ? (
@@ -108,14 +111,14 @@ export default function HomePage() {
                     href="/dashboard"
                     className="px-6 py-2 bg-slate-900 text-white rounded-full font-bold shadow-lg"
                   >
-                    ড্যাশবোর্ড
+                    Dashboard
                   </Link>
                 ) : (
                   <button
                     onClick={() => signIn("google")}
                     className="w-full py-3 bg-[#57BEA4] text-white rounded-xl"
                   >
-                    লগইন করুন
+                    Login
                   </button>
                 )}
               </div>
@@ -143,9 +146,9 @@ export default function HomePage() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            আপনার ব্যবসার <br />
+            Smart Accoutant <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#57BEA4] to-emerald-600">
-              স্মার্ট একাউন্ট্যান্ট
+              Your Business
             </span>
           </motion.h1>
 
@@ -155,8 +158,8 @@ export default function HomePage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            ম্যানুয়াল হিসাব বাদ দিন। ইনভকনৌ দিয়ে প্রফেশনাল ইনভয়েস তৈরি করুন,
-            অটোমেটিক পেমেন্ট রিমাইন্ডার পাঠান এবং ব্যবসা বড় করুন।
+            Eliminate manual accounting. Create professional invoices, send
+            automatic payment reminders, and grow your business with InvocNow.
           </motion.p>
 
           <motion.div
@@ -165,14 +168,15 @@ export default function HomePage() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            <button
-              onClick={() => signIn("google")}
-              className="px-10 py-4 bg-slate-900 text-white rounded-2xl text-lg font-bold hover:shadow-2xl transition-all active:scale-95"
+            <Link
+              href={"/invoice"}
+              // onClick={() => signIn("google")}
+              className="animate-bounce px-10 py-4 bg-slate-900 text-white rounded-2xl text-lg font-bold hover:shadow-2xl transition-all active:scale-95"
             >
-              ফ্রি শুরু করুন
-            </button>
+             Start Free
+            </Link>
             <button className="px-10 py-4 border border-slate-200 rounded-2xl text-lg font-bold hover:bg-slate-50 transition-all">
-              কিভাবে কাজ করে?
+              How to work?
             </button>
           </motion.div>
         </div>
@@ -182,7 +186,7 @@ export default function HomePage() {
       <section className="py-20 bg-slate-900 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
           <h2 className="text-white text-3xl font-bold">
-            আমাদের হ্যাপি ক্লায়েন্ট
+            Happy Client
           </h2>
         </div>
 
@@ -199,12 +203,11 @@ export default function HomePage() {
               >
                 <div className="flex gap-1 text-yellow-400 mb-4">★★★★★</div>
                 <p className="text-slate-300 italic mb-6 whitespace-normal">
-                  "অসাধারণ সার্ভিস! আমার ব্যবসার ইনভয়েসিং এখন অনেক সহজ হয়ে
-                  গেছে।"
+                  "Great service! My business invoicing has become much easier now."
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 bg-[#57BEA4] rounded-full"></div>
-                  <div className="text-white font-bold">ইউজার {i}</div>
+                  <div className="text-white font-bold">User {i}</div>
                 </div>
               </div>
             ))}
@@ -216,10 +219,10 @@ export default function HomePage() {
       <section id="pricing" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 text-center mb-16">
           <h2 className="text-4xl font-black mb-4 tracking-tight">
-            সঠিক প্ল্যানটি বেছে নিন
+            Choose Your Plan
           </h2>
           <p className="text-slate-500">
-            কোনো হিডেন চার্জ নেই, আপনার প্রয়োজন অনুযায়ী বেছে নিন
+            No hidden charges, choose according to your needs
           </p>
         </div>
 

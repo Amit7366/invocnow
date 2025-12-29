@@ -1,6 +1,6 @@
 "use client";
 
-import PreviewToolbar from "@/app/invoice/components/Preview/PreviewToolbar";
+
 import { useInvoiceStore } from "@/app/store/useInvoiceStore";
 import ClassicTemplate from "@/app/templates/Classic";
 import CompactTemplate from "@/app/templates/Compact";
@@ -9,6 +9,7 @@ import ModernTemplate from "@/app/templates/Modern";
 import StripeTemplate from "@/app/templates/StripeTemplate";
 import ZohoTemplate from "@/app/templates/ZohoTemplate";
 import { useRef } from "react";
+import PreviewToolbar from "./PreviewToolbar";
 
 
 const templates = {

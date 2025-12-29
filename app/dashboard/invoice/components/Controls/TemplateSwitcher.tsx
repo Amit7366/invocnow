@@ -33,7 +33,7 @@ export default function TemplateSwitcher() {
                   ? "bg-emerald-600 text-white shadow-md scale-105 focus:ring-emerald-500"
                   : `
                     border border-gray-300 dark:border-gray-600
-                    text-gray-700 dark:text-gray-200
+                    text-black dark:text-gray-200
                     hover:bg-emerald-50 dark:hover:bg-gray-700
                     hover:border-emerald-500
                     hover:shadow-sm
