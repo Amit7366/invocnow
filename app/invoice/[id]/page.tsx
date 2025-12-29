@@ -1,6 +1,7 @@
-import InvoiceHeader from "../../components/InvoiceHeader";
-import InvoiceItemsTable from "../../components/InvoiceItemsTable";
-import InvoiceSummary from "../../components/InvoiceSummary";
+import InvoiceHeader from "@/app/dashboard/components/InvoiceHeader";
+import InvoiceItemsTable from "@/app/dashboard/components/InvoiceItemsTable";
+import InvoiceSummary from "@/app/dashboard/components/InvoiceSummary";
+
 
 export default function InvoiceViewPage() {
   return (
