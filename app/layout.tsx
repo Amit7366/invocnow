@@ -41,10 +41,7 @@ export const metadata: Metadata = {
   },
 };
 
-
-
 // export const metadata: Metadata = {
-
 
 //   title: "Invocnow | বাংলাদেশের সেরা অনলাইন ইনভয়েস মেকার",
 //   description:
@@ -77,20 +74,17 @@ export default function RootLayout({
   return (
     <html lang="bn-BD">
       <head>
-          <Script
-          id="adsense-script"
+        <script
           async
-          strategy="afterInteractive"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9364360147573253"
           crossOrigin="anonymous"
-        />
-        
+        ></script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AnalyticsProvider />
-        <InstallAppBanner/>
+        <InstallAppBanner />
         <Providers>{children}</Providers>
       </body>
     </html>
