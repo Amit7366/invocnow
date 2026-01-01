@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import InstallAppBanner from "./components/InstallAppBanner";
 import AnalyticsProvider from "./components/AnalyticsProvider";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -75,6 +76,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="bn-BD">
+      <head>
+          <Script
+          id="adsense-script"
+          async
+          strategy="afterInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9364360147573253"
+          crossOrigin="anonymous"
+        />
+        
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
