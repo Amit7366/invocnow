@@ -4,7 +4,6 @@ import { useReactToPrint } from "react-to-print";
 import React, { useState } from "react";
 import { Download } from "lucide-react";
 import { useInvoiceStore } from "@/app/store/useInvoiceStore";
-
 import { useSession } from "next-auth/react";
 import { createInvoice } from "@/app/lib/api/invoice";
 
@@ -13,36 +12,54 @@ export default function DownloadButton({
 }: {
   printRef: React.RefObject<HTMLDivElement | null>;
 }) {
-  const { invoice } = useInvoiceStore();
-  const { data: session } = useSession();
+  const { invoice, update } = useInvoiceStore(); // ✅ get update too
+  const { data: session, status } = useSession();
   const [loading, setLoading] = useState(false);
- console.log("SESSION 👉", session);
-
-
 
   const handlePrint = useReactToPrint({
     contentRef: printRef,
     documentTitle: invoice.invoiceNo || "Invoice",
   });
 
+  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
   const handleSaveAndPrint = async () => {
-    if (!session || !printRef.current) return;
+    if (!session?.googleIdToken) return;
+    if (!printRef.current) return;
 
     try {
       setLoading(true);
 
-      // await createInvoice(
-      //   {
-      //     ...invoice,
-      //     issueDate: invoice.issueDate || new Date().toISOString(),
-      //   },
-      //   (session as any).accessToken // or jwt token
-      // );
+      const res = await createInvoice(
+        {
+          ...invoice,
+          issueDate: invoice.issueDate || new Date().toISOString(),
+        },
+        session.googleIdToken
+      );
 
-      handlePrint?.(); // ✅ print only after save
-    } catch (error) {
-      alert("Invoice could not be saved.!");
-      console.error(error);
+      // depending on your sendSuccess shape:
+      const savedInvoice = res?.data ?? res?.invoice ?? res;
+
+      if (savedInvoice?.invoiceNo) {
+        update({ invoiceNo: savedInvoice.invoiceNo, _id: savedInvoice._id });
+
+        // ✅ wait for React to re-render the preview
+        await sleep(0);
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            handlePrint?.();
+          });
+        });
+
+        return;
+      }
+
+      // fallback if no invoiceNo returned
+      handlePrint?.();
+    } catch (error: any) {
+      console.error(error?.response?.data || error);
+      alert(error?.response?.data?.message || "Invoice could not be saved!");
     } finally {
       setLoading(false);
     }
@@ -51,7 +68,8 @@ export default function DownloadButton({
   return (
     <button
       onClick={handleSaveAndPrint}
-      disabled={loading || !printRef.current}
+      // ✅ IMPORTANT: don't disable based on printRef.current (ref changes don't rerender)
+      disabled={loading || status === "loading"}
       className={`
         inline-flex items-center gap-2
         px-5 py-2.5 rounded-xl text-sm font-medium
