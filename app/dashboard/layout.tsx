@@ -4,6 +4,7 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 import { SidebarProvider } from "./context/SidebarContext";
+import SyncUserToBackend from "../hooks/SyncUserToBackend";
 
 export default async function DashboardLayout({
   children,
@@ -17,6 +18,8 @@ export default async function DashboardLayout({
 
   return (
     <SidebarProvider>
+       {/* ✅ runs on client after login */}
+      <SyncUserToBackend />
       <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
         <Sidebar />
 
