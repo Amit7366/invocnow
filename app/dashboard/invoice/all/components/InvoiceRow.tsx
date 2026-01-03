@@ -6,10 +6,10 @@ import { ChevronRight } from "lucide-react";
 import { computeTotal, deriveStatus } from "./invoiceUtils";
 
 export interface InvoiceRowProps {
-  id: string;
+  id?: string;
   invoiceNo: string;
   client: string;
-  userName: string;
+  userName?: string;
   date: string;
   amount?: string; // optional now
   status: string;
