@@ -6,7 +6,7 @@ import InvoiceSummary from "@/app/dashboard/components/InvoiceSummary";
 export default function InvoiceViewPage() {
   return (
     <div className="max-w-4xl mx-auto bg-white dark:bg-gray-900 border dark:border-gray-700 rounded-2xl p-8 shadow-sm">
-      <InvoiceHeader />
+      {/* <InvoiceHeader /> */}
       {/* Billing Info */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
         <div>
@@ -30,8 +30,8 @@ export default function InvoiceViewPage() {
         </div>
       </div>
 
-      <InvoiceItemsTable />
-      <InvoiceSummary />
+      {/* <InvoiceItemsTable />
+      <InvoiceSummary /> */}
 
       <div className="mt-8 text-sm text-gray-600 dark:text-gray-400">
         <p>
