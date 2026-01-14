@@ -12,7 +12,7 @@ export default function ZohoTemplate({ invoice }: { invoice: Invoice }) {
   );
 
   return (
-    <div className="mx-auto max-w-4xl bg-white p-10 text-xs text-gray-800">
+    <div className="mx-auto max-w-4xl bg-white p-10 text-xs text-gray-800  print-area classic-invoice"  id="invoice-print">
       <div className="border-b pb-4">
         <h1 className="text-2xl font-bold">INVOICE</h1>
         <p className="mt-1">Invoice No: {invoice.invoiceNo}</p>

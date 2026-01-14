@@ -84,7 +84,7 @@ export default function ClassicTemplate({ invoice }: { invoice: Invoice }) {
           </p>
         </div>
 
-        <div>
+        <div className="text-end">
           <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
             Bill To
           </h4>

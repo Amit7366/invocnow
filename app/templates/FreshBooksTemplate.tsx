@@ -12,7 +12,7 @@ export default function FreshBooksTemplate({ invoice }: { invoice: Invoice }) {
   );
 
   return (
-    <div className="mx-auto max-w-4xl rounded-xl bg-white p-10 text-sm shadow">
+    <div className="mx-auto max-w-4xl rounded-xl bg-white p-10 text-sm shadow  print-area classic-invoice"  id="invoice-print">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-semibold">Invoice</h1>
         <span className="rounded bg-blue-50 px-4 py-1 text-blue-700 text-xs font-semibold">

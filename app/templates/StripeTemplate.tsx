@@ -16,7 +16,7 @@ export default function StripeTemplate({ invoice }: { invoice: Invoice }) {
     due === 0 ? "Paid" : invoice.paidAmount > 0 ? "Partially paid" : "Due";
 
   return (
-    <div className="mx-auto max-w-4xl bg-white px-12 py-14 text-[13px] text-gray-900">
+    <div className="mx-auto max-w-4xl bg-white px-12 py-14 text-[13px] text-gray-900  print-area classic-invoice"  id="invoice-print">
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>

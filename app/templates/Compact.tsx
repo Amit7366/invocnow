@@ -12,7 +12,7 @@ export default function CompactTemplate({ invoice }: { invoice: Invoice }) {
   );
 
   return (
-    <div className="bg-white p-8 text-xs text-gray-800">
+    <div className="bg-white p-8 text-xs text-gray-800 print-area classic-invoice"  id="invoice-print">
       <div className="flex justify-between">
         <h1 className="text-xl font-bold">INVOICE</h1>
         <div className="text-right">

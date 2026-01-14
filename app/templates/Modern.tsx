@@ -16,7 +16,7 @@ export default function ModernTemplate({ invoice }: { invoice: Invoice }) {
     due === 0 ? "PAID" : invoice.paidAmount > 0 ? "PARTIALLY PAID" : "DUE";
 
   return (
-    <div className="mx-auto max-w-4xl bg-white px-10 py-12 text-sm text-gray-900">
+    <div className="mx-auto max-w-4xl bg-white px-10 py-12 text-sm text-gray-900  print-area classic-invoice"  id="invoice-print">
       {/* Header */}
       <div className="flex items-start justify-between border-b pb-6">
         <div>
