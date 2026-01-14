@@ -17,7 +17,7 @@ export default function ClassicTemplate({ invoice }: { invoice: Invoice }) {
     due === 0 ? "PAID" : invoice.paidAmount > 0 ? "PARTIALLY PAID" : "DUE";
 
   return (
-    <div className="bg-white p-12 text-sm text-gray-800">
+    <div className="bg-white p-12 text-sm text-gray-800 print-area classic-invoice"  id="invoice-print">
       {/* HEADER */}
       <header className="mb-12 flex items-start justify-between">
         <div className="flex items-center gap-5">

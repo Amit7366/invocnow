@@ -40,4 +40,47 @@
   .no-print {
     display: none !important;
   }
+
+   /* smaller page margins = more space for items */
+  @page {
+    size: A4;
+    margin: 10mm; /* was 20mm */
+  }
+
+  /* compact invoice typography + spacing */
+  #invoice-print {
+    padding: 0 !important;          /* kills p-12 for print */
+    font-size: 10pt !important;     /* smaller font */
+    line-height: 1.25 !important;   /* tighter lines */
+  }
+
+  /* reduce big tailwind margins in print */
+  #invoice-print header {
+    margin-bottom: 14px !important; /* was mb-12 */
+  }
+  #invoice-print section {
+    margin-bottom: 14px !important; /* reduce mb-12/mb-10 blocks */
+  }
+
+  /* compact the table rows (this is the main one for “more items”) */
+  #invoice-print table th,
+  #invoice-print table td {
+    padding-top: 4px !important;    /* was py-3 (12px) */
+    padding-bottom: 4px !important;
+  }
+
+  /* make table header repeat on next page if items overflow */
+  #invoice-print thead {
+    display: table-header-group;
+  }
+
+  /* avoid cutting a row half on page break */
+  #invoice-print tr {
+    page-break-inside: avoid;
+  }
+
+  /* optional: shrink “Amount Due” so it doesn’t eat space */
+  #invoice-print .text-lg {
+    font-size: 12pt !important;
+  }
 }

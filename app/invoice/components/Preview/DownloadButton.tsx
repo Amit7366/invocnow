@@ -30,14 +30,6 @@ export default function DownloadButton({
     try {
       setLoading(true);
 
-      // await createInvoice(
-      //   {
-      //     ...invoice,
-      //     issueDate: invoice.issueDate || new Date().toISOString(),
-      //   },
-      //   (session as any).accessToken // or jwt token
-      // );
-
       handlePrint?.(); // ✅ print only after save
     } catch (error) {
       alert("Invoice could not be saved.!");
