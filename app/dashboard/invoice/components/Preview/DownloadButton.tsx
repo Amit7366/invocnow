@@ -41,8 +41,11 @@ export default function DownloadButton({
       // depending on your sendSuccess shape:
       const savedInvoice = res?.data ?? res?.invoice ?? res;
 
+      console.log(savedInvoice)
+
       if (savedInvoice?.invoiceNo) {
         update({ invoiceNo: savedInvoice.invoiceNo, _id: savedInvoice._id });
+        // console.log(update)
 
         // ✅ wait for React to re-render the preview
         await sleep(0);
@@ -53,13 +56,14 @@ export default function DownloadButton({
         });
 
         return;
-      }
+      } 
 
       // fallback if no invoiceNo returned
       handlePrint?.();
     } catch (error: any) {
       console.error(error?.response?.data || error);
-      alert(error?.response?.data?.message || "Invoice could not be saved!");
+       handlePrint?.();
+      // alert(error?.response?.data?.message || "Invoice could not be saved!");
     } finally {
       setLoading(false);
     }
