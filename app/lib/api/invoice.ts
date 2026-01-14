@@ -8,7 +8,7 @@ if (!API_BASE) {
 }
 
 export async function createInvoice(invoice: Invoice, googleIdToken: string) {
-  const res = await axios.post("${API_BASE}/api/v1/invoices", invoice, {
+  const res = await axios.post(`${API_BASE}/api/v1/invoices`, invoice, {
     headers: {
       Authorization: `Bearer ${googleIdToken}`,
     },
